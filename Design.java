@@ -1,3 +1,4 @@
+import ATM.ATMDemo;
 import jiradesign.JiraDemo;
 import logginframework.LoggerDemo;
 import vendingmachine.VendingMachineClient;
@@ -10,5 +11,7 @@ public class Design {
         // ld.initializeLogger();
         // JiraDemo demo = new JiraDemo();
         // demo.initalizeJira();
+        ATMDemo demo = new ATMDemo();
+        demo.initializeATM();
     }
 }
