@@ -42,10 +42,15 @@ public class ATM {
         inv.addCash(type, number);
     }
 
+    public void printMoney() {
+        this.inv.printMoney();
+    }
+
     public void insertCard(Card card) {
         // We can use try catch block here to catch exception here
         // if this operation is not for currentState
         if (this.currentState instanceof IdleState) {
+            this.insertedCard = card;
             this.currentState.nextState(instance);
         }
     }
@@ -70,6 +75,8 @@ public class ATM {
                 if (service.isSufficientFund(insertedCard, money)) {
                     if (inv.isSufficientFund(money)) {
                         inv.withdrawCash(money);
+                        service.withDrawMoney(insertedCard, money);
+                        // System.out.println("Here new");
                         // WE CAN NOTIFY THE USER AS WELL BASED ON IT'S PREFRENCE
                         // DISPENCE THE CASH FROM HERE
                     }
