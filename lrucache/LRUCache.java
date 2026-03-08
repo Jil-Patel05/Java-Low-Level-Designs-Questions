@@ -34,7 +34,8 @@ public class LRUCache<K, V> {
         if (map.containsKey(key)) {
             linkedList.removeKey(map.get(key));
         }
-        linkedList.addKey(key, value);
+        Node<K, V> node = linkedList.addKey(key, value);
+        map.put(key, node);
     }
 
     public void displayCacheAndValue() {

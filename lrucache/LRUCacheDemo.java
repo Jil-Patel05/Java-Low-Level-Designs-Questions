@@ -9,5 +9,8 @@ public class LRUCacheDemo {
         cache.put("3", "1");
         cache.put("4", "1");
         cache.put("5", "1");
+        cache.put("5", "2");
+        cache.put("6", "1");
+        cache.displayCacheAndValue();
     }
 }

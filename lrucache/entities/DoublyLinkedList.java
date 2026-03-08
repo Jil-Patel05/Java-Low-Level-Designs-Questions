@@ -7,6 +7,8 @@ public class DoublyLinkedList<K, V> {
     public DoublyLinkedList() {
         head = new Node<>();
         tail = new Node<>();
+        head.next = tail;
+        tail.prev = head;
     }
 
     private void handleNodeRemoval(Node<K, V> nodeToRemNode) {
@@ -25,7 +27,7 @@ public class DoublyLinkedList<K, V> {
         this.handleNodeRemoval(nodeToRemNode);
     }
 
-    public void addKey(K key, V value) {
+    public Node<K, V> addKey(K key, V value) {
         Node<K, V> node = new Node<>();
         node.setNode(key, value);
         Node<K, V> prevNode = tail.prev;
@@ -33,6 +35,7 @@ public class DoublyLinkedList<K, V> {
         node.next = tail;
         prevNode.next = node;
         tail.prev = node;
+        return node;
     }
 
     public void displayCacheAndValue() {
