@@ -1,6 +1,7 @@
 import ATM.ATMDemo;
 import jiradesign.JiraDemo;
 import logginframework.LoggerDemo;
+import lrucache.LRUCacheDemo;
 import vendingmachine.VendingMachineClient;
 
 public class Design {
@@ -11,7 +12,9 @@ public class Design {
         // ld.initializeLogger();
         // JiraDemo demo = new JiraDemo();
         // demo.initalizeJira();
-        ATMDemo demo = new ATMDemo();
-        demo.initializeATM();
+        // ATMDemo demo = new ATMDemo();
+        // demo.initializeATM();
+        LRUCacheDemo demo = new LRUCacheDemo();
+        demo.initalizeLRUCache();
     }
 }
