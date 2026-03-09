@@ -28,6 +28,7 @@ public class Topic {
 
     public void brodCast(Message msg) {
         for (Subscriber sb : subscribers) {
+            System.out.println(sb.hashCode());
             this.service.submit(() -> {
                 sb.getMessage(msg);
             });

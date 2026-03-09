@@ -20,7 +20,7 @@ public class PubSubService {
         this.service = Executors.newCachedThreadPool();
     }
 
-    public PubSubService getInstance() {
+    public static PubSubService getInstance() {
         if (instance == null) {
             synchronized (PubSubService.class) {
                 if (instance == null) {
@@ -50,6 +50,7 @@ public class PubSubService {
     public void publishMessage(TOPICS topicName, Message msg) {
         Topic topic = topics.get(topicName);
         topic.brodCast(msg);
+        return;
     }
 
     public void shutdown() {
