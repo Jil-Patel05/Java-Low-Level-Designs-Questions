@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 
+import pubsub.GlobalEnums.TOPICS;
+
 public class Topic {
     private String id;
-    private String topicName;
+    private TOPICS topicName;
     private List<Subscriber> subscribers = new ArrayList<>();
     private ExecutorService service;
 
-    public Topic(String id, String topicName, ExecutorService service) {
+    public Topic(String id, TOPICS topicName, ExecutorService service) {
         this.id = id;
         this.topicName = topicName;
         this.service = service;
