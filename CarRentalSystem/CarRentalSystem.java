@@ -49,7 +49,7 @@ public class CarRentalSystem {
     public List<Car> getCarList(LocalDate startDate, LocalDate endDate, CAR_TYPE type, double priceRangeStart,
             double priceRangeEnd) {
         List<Car> carsToReturn = this.cars.values().stream().filter((car) -> {
-            if (checkCarAvaibility(car, startDate, endDate, null) && (type != null && car.carType == type)
+            if (checkCarAvaibility(car, startDate, endDate, null) && car.carType == type
                     && car.pricePerDay >= priceRangeStart
                     && car.pricePerDay <= priceRangeEnd) {
                 return true;
@@ -77,9 +77,10 @@ public class CarRentalSystem {
         this.reserveTheCar(rv, car, startDate, endDate, user);
     }
 
-    public List<Car> SearchInmodifiedReservation(Reservations rv, LocalDate startDate, LocalDate endDate, CAR_TYPE type,
+    public List<Car> SearchInmodifiedReservation(int resvId, LocalDate startDate, LocalDate endDate, CAR_TYPE type,
             double priceRangeStart,
-            double priceRangeEnd) {
+            double priceRangeEnd, User user) {
+        Reservations rv = user.reservations.get(resvId);
         List<Car> carsToReturn = this.cars.values().stream().filter((car) -> {
             if (checkCarAvaibility(car, startDate, endDate, rv) && (type != null && car.carType == type)
                     && car.pricePerDay >= priceRangeStart
@@ -106,10 +107,11 @@ public class CarRentalSystem {
         try {
             // Try to go for reservation if failure occur
             rv.setReservationState(RESERVATION_STATE.ACTIVE);
-            if (rv.state != RESERVATION_STATE.MODIFIED) {
+            if (rv.state == RESERVATION_STATE.MODIFIED) {
                 car.removeReservations(rv.prevResId);
-                car.addCarReservations(rv);
             }
+            car.addCarReservations(rv);
+            System.out.println("Coming to here");
             user.addReservation(rv);
         } catch (Exception ex) {
             rv.setReservationState(RESERVATION_STATE.CANCELED);
@@ -118,8 +120,9 @@ public class CarRentalSystem {
         }
     }
 
-    public void modifyReservation(Reservations prevRv, Car car, LocalDate startDate, LocalDate endDate, User user) {
-        Reservations rv = new Reservations(1, user.id, car.id, startDate, endDate);
+    public void modifyReservation(int prevRvId, Car car, LocalDate startDate, LocalDate endDate, User user) {
+        Reservations prevRv = user.reservations.get(prevRvId);
+        Reservations rv = new Reservations(2, user.id, car.id, startDate, endDate);
         rv.linkReservation(prevRv);
         rv.setReservationState(RESERVATION_STATE.MODIFIED);
         this.reserveTheCar(rv, car, startDate, endDate, user);
