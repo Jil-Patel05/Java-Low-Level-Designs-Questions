@@ -1,5 +1,6 @@
 import ATM.ATMDemo;
 import CarRentalSystem.CarRentalSystemDemo;
+import MeeetingScheduler.MeetingRoomDemo;
 import jiradesign.JiraDemo;
 import logginframework.LoggerDemo;
 import lrucache.LRUCacheDemo;
@@ -20,7 +21,9 @@ public class Design {
         // demo.initalizeLRUCache();
         // PubSubDemo demo = new PubSubDemo();
         // demo.initializePubSub();
-        CarRentalSystemDemo demo = new CarRentalSystemDemo();
-        demo.initializeCarRental();
+        // CarRentalSystemDemo demo = new CarRentalSystemDemo();
+        // demo.initializeCarRental();
+        MeetingRoomDemo demo = new MeetingRoomDemo();
+        demo.startMeetingRoomInitializer();
     }
 }
